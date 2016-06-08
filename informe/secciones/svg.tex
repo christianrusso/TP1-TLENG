@@ -1,0 +1,32 @@
+\section{Geraci\'on del SVG}
+Para generar el archivo SVG utilizamos la libreria de python \textbf{svgwrite}\footnote{https://pypi.python.org/pypi/svgwrite}\footnote{Para installar correr: pip install svgwrite}. 
+La forma de utilizarla es la siguiente:
+
+\begin{algorithm}[H]
+	\# \textit{\footnotesize{Creamos la nueva imagen con los atributos correspondientes}} \\
+	img = svgwrite.Drawing(filename = "nombre.svg", atributos) \\
+	\# \textit{\footnotesize{Agregamos un atributo Group es decir el tag g}} \\
+	group = img.g(atributos) \\
+	\# \textit{\footnotesize{Dentro del Group agregamos los tags que querramos, como un Text}} \\
+	group.add(img.Text(atributos)) \\
+	\# \textit{\footnotesize{Agregamos un tag Line}} \\
+	group.add(img.Line(atributos)) \\
+	\# \textit{\footnotesize{Se agrega el Group dentro de la imagen}} \\
+	img.add(group) \\
+	\# \textit{\footnotesize{Se guarda la imagen}} \\
+	img.save()
+    \caption{Ejemplo de uso de svgwrite}
+\end{algorithm}
+
+En particular, en nuestro c\'odigo, la creaci\'on del archivo .svg, la generaci\'on del Group, agregar el Group al svg y guardar el archivo, lo estamos haciendo en \textbf{tp.py}. Luego para cada tag se encargan las propias producciones:  
+
+\begin{itemize}
+  \item la producci\'on del operando (OperandNode) escribe en el svg el tag text con los atributos correspondientes
+  \item La producci\'on de los parent\'esis (ParenthesisNode) escribe en el svg el tag especial para los parent\'esis
+  \item La producci\'on de la division (DivisionNode) agrega el tag Line para la linea devisora
+\end{itemize}
+
+De esta forma estamos generando el archivo .svg llamado figura.svg. 
+
+\textbf{Nota:} Con cada ejecuci\'on del c\'odigo se sobreescribe la imagen anterior con la nueva.
+

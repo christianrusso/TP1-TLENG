@@ -1,0 +1,56 @@
+\section{Tests}
+
+\subsection{An\'alisis y generaci\'on}
+Para correr los nuestros tests correr \textbf{Make}, mas explicado en una secci\'on posterior. 
+Hicimos una lista de tests para testear el programa. Los tests elegidos fueron elegidos a mano siguiendo criterios razonables para poder testear todos los casos posibles. Por ejemplo, subindices, super\'indice, ambos anidados, divisiones, divisiones concatenadas con otras operaciones, asociatividad de \{ \}, utilizaci\'on de par\'entesis, gram\'aticas no aceptadas.
+
+En caso de que la gramatica de entrada no este aceptada en lugar de devolver un svg con la imagen, devuelve un archivo (tambi\'en .svg) que contiene \textbf{Syntax error in input!}
+
+\subsection{Resultados}
+\begin{center}
+  \begin{tabular}{ l | c || r }
+    \hline
+    N\'umero & Entrada & Salida \\ \hline
+    1 & (A) & \includegraphics[width=0.7cm]{result/1} \\ \hline
+    2 & (AB)+C & \includegraphics[width=1.2cm]{result/2} \\ \hline
+    3 & A\^{}\{B\^{}\{C\}\} & \includegraphics[width=0.7cm]{result/3} \\ \hline
+    4 & H+A\^{}\{B\^{}\{C\}\}\_\{D\_\{E\}\} & \includegraphics[width=1.2cm]{result/4} \\ \hline
+    5 & (H+A\^{}\{B\^{}\{C\}\}\_\{D\_\{E\}\}) & \includegraphics[width=1.2cm]{result/5} \\ \hline
+    6 & H+A\^{}\{B\^{}\{C\}\}\_\{D\_\{E\}\}/(A) & \includegraphics[width=1.1cm]{result/6} \\ \hline
+    7 & (AB)+C/H+A\^{}\{B\^{}\{C\}\}\_\{D\_\{E\}\} & \includegraphics[width=1.5cm]{result/7} \\ \hline
+    8 & (A\^{}BC\^{}D/E\^{}F\_G+H)-I & \includegraphics[width=1.5cm]{result/8} \\ \hline
+    9 & \{(AB)+C/H+A\^{}\{B\^{}\{C\}\}\_\{D\_\{E\}\}\}+ .. & \includegraphics[width=2.5cm]{result/9} \\ \hline
+    10 & A/B/C & \includegraphics[width=0.2cm]{result/10} \\ \hline
+    11 & \{A/B\}/C & \includegraphics[width=0.2cm]{result/11} \\ \hline
+    12 & (A/B/C) & \includegraphics[width=0.4cm]{result/12} \\ \hline
+    13 & \{A/C\} + (\{\{B\^{}C\_T\}/\{D\^{}A\_H\}\}) + T\_C & \includegraphics[width=1.7cm]{result/13} \\ \hline
+    14 & (\{\{(AB)+C/H+A\^{}\{B\^{}\{C\}\}\_\{D\_\{E\}\}\}+ ... & \includegraphics[width=1.7cm]{result/14} \\   \hline
+
+    15 & \{(\{\{(AB)+C/H+A\^{}\{B\^{}\{C\^{}\{P\}\}\}\_\{D\_\{E\}\}\}+  ... & \includegraphics[width=3.5cm]{result/15} \\ 
+
+    \hline
+
+  \end{tabular}
+\end{center}
+
+Algunos casos donde se detectan errores:
+
+\begin{center}
+  \begin{tabular}{ l | c || r }
+    \hline
+    N\'umero & Entrada & Salida \\ \hline
+    16 & ((A) & Syntax error in input! \\ \hline
+    17 & (/) & Syntax error in input! \\ \hline
+    18 & A\^{}A\^{}A & Syntax error in input! \\ \hline
+    19 & A\_A\_A & Syntax error in input! \\ \hline
+    20 & A\_A) & Syntax error in input! \\ \hline
+
+    
+
+  \end{tabular}
+\end{center}
+\subsection{Conclusi\'on}
+
+Notamos que en las cadena de entrada que respetan a la gram\'atica, es decir que se pueden generar a partir de la gram\'atica dada, se genera un archivo .svg con la imagen de la formula. En cambio en las cadenas que no son soportadas se genera un .svg con el texto \textbf{Syntax error in input!}. 
+Notamos tambi\'en que las formulas se dibujan correctamente para todos los casos patol\'ogicos que probamos, quedando cubiertos la mayor cantidad posible de casos existentes. 
+Por lo tanto concluimos que nuestro compositor de formulas matem\'aticas esta generando de forma correcta los .svg de las cadenas de entrada y esta reconociendo cuando una cadena pertenece o no al lenguaje tirando error de sintaxis en el caso correspondiente.

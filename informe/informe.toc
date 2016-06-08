@@ -1,0 +1,26 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{3}{section.1}
+\contentsline {section}{\numberline {2}Desambiguando la gram\'atica}{3}{section.2}
+\contentsline {section}{\numberline {3}Analizador L\'exico}{5}{section.3}
+\contentsline {section}{\numberline {4}Traducci\'on Dirigida por Sintaxis}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Atributos}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Explicaci\'on}{6}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Atributos}{6}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}TDS}{7}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}Implementaci\'on TDS}{8}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Reglas Sint\'acticas}{8}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}\'Arbol Sint\'actico}{8}{subsubsection.4.3.2}
+\contentsline {subsection}{\numberline {4.4}Recorrido del \'Arbol Sint\'actico}{9}{subsection.4.4}
+\contentsline {section}{\numberline {5}Geraci\'on del SVG}{9}{section.5}
+\contentsline {section}{\numberline {6}Tests}{10}{section.6}
+\contentsline {subsection}{\numberline {6.1}An\'alisis y generaci\'on}{10}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Resultados}{11}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Conclusi\'on}{12}{subsection.6.3}
+\contentsline {section}{\numberline {7}Modo de Uso}{12}{section.7}
+\contentsline {subsection}{\numberline {7.1}Paquetes Necesarios}{12}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Ejecuci\'on}{12}{subsection.7.2}
+\contentsline {section}{\numberline {8}Codigo}{13}{section.8}
+\contentsline {subsection}{\numberline {8.1}tp.py}{13}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}parser\_rules.py}{13}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}lexer\_rules.py}{14}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}ast.py}{15}{subsection.8.4}

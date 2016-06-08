@@ -1,0 +1,110 @@
+\section{Desambiguando la gram\'atica}
+
+Para utilizar un parser LR lo primero que tuvimos que hacer es desambiguar la gram\'atica, dado que nuestra gram\'atica original era:
+
+
+\begin{center}
+\begin{tabular}{ l  l }
+  E $\rightarrow$  & E E \\
+    & |   E  \^{} E \\
+    &  |  E  \_ E \\
+    &  |  E \^{} E \_ E  \\
+    &  |  E \_ E \^{} E \\
+    &  |  E / E \\
+    &  |  ( E ) \\
+    &  |  \{ E \} \\
+    &  |  l \\
+\end{tabular}
+\end{center}
+
+
+Y esta \textbf{es ambigua} dado que tenemos mas de un \'arbol de derivaci\'on, por ejemplo para la cadena A \^{} BC \^{} D se la puede derivar de estas maneras:
+
+\begin{center}
+\begin{tikzpicture}[level 1/.style={sibling distance=2cm},level 2/.style={sibling distance=2.5cm},level 3/.style={sibling distance=2.5cm},level 4/.style={sibling distance=1.5cm}]
+	\node {E}[edge from parent fork down]
+		child { node {E}
+			child {node{A}}}
+		child { node {\^{}}}	
+		child { node {E}
+			 child {node{E}
+			 	child {node{A}}}
+			 child {node{\^{}}}
+			 child {node{ E}
+			 	child {node{E}
+					child {node{B}}}
+				child {node{E}
+				child {node{E}
+				child {node{C}}}
+				child {node{\^{}}}
+				child {node{E}
+				child {node{D}}}}}
+			}		 		
+	;
+\end{tikzpicture}
+
+
+
+\begin{tikzpicture}[level 1/.style={sibling distance=5cm},level 2/.style={sibling distance=1cm},level 3/.style={sibling distance=0.2cm}]
+	\node {E}[edge from parent fork down]
+		child { node {E}
+			child {node{E}
+			child {node{A}}}
+			child {node{\^{}}}
+			child {node{E}
+			child {node{B}}}
+			}	
+		child { node {E}
+			child {node{E}
+			child {node{C}}}
+			child {node{\^{}}}
+			child {node{E}
+			child {node{D}}}
+			}		 		
+	;
+\end{tikzpicture}
+\end{center}
+
+Entonces para desambiguarla propusimos la siguiente tabla de precedencias y asociaciones.
+
+\begin{center}
+  \begin{tabular}{| l | c | r |}
+    \hline
+    Operaci\'on & Precedencia & Asociatividad \\ \hline
+    / & 0 & Izq \\ \hline
+    concat & 1 & Izq \\ \hline
+    \^{} y\_ & 2& - \\ \hline
+    \{ \} y () & 3 & - \\ 
+    \hline
+  \end{tabular}
+\end{center}
+
+Siguiendo esta tabla, obtenemos una gram\'atica \textbf{no ambigua} de la siguiente forma:
+
+\begin{center}
+\begin{tabular}{ l  l }
+  E $\rightarrow$  & E / C \\
+  E $\rightarrow$  &  C \\
+  C $\rightarrow$  &  CI \\
+  C $\rightarrow$  &  I  \\
+  I $\rightarrow$  &  A\^{} A \\
+  I $\rightarrow$  &  A \_ A \\
+  I $\rightarrow$  &  A\^{} A \_ A \\
+  I $\rightarrow$  &  A\_ A \^{} A \\
+  I $\rightarrow$  &  A \\
+  A $\rightarrow$ &  \{ E \} \\
+  A $\rightarrow$ &  ( E ) \\
+  A $\rightarrow$ &  l \\
+\end{tabular}
+\end{center}
+
+Compactada:
+
+\begin{center}
+\begin{tabular}{ l  l }
+  E $\rightarrow$  & E / C | C\\
+  C $\rightarrow$  &  CI | I\\
+  I $\rightarrow$  &  A\^{} A |  A \_ A  | A\^{} A \_ A | A\_ A \^{} A | A\\
+  A $\rightarrow$ &  \{ E \} | (E) | I\\
+\end{tabular}
+\end{center}

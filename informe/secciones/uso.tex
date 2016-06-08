@@ -1,0 +1,28 @@
+\section{Modo de Uso}
+\subsection{Paquetes Necesarios}
+\begin{framed}
+Para correr nuestro c\'odigo es necesario instalar \textbf{svgwriter} de la siguiente forma
+\begin{verbatim}
+$ pip install svgwrite
+\end{verbatim}
+\end{framed}
+\subsection{Ejecuci\'on}
+\begin{framed}
+Parados en la carpeta \textbf{src} del proyecto correr: 
+\begin{verbatim}
+$ python tp.py < PATH_INPUT > PATH_OUTPUT
+\end{verbatim}
+\end{framed}
+remplazando \textbf{PATH\_INPUT} por el path del archivo de entrada que contenga una cadena y \textbf{PATH\_OUTPUT} por el path donde se quiere generar el svg de la salida.
+
+Otra manera posible es
+
+\begin{framed}
+Parados en la carpeta \textbf{src} del proyecto correr: 
+\begin{verbatim}
+$ Make
+\end{verbatim}
+\end{framed}
+
+Este comando corre el Makefile, corriendo nuestros tests (en /tests) y generando (en /result) un archivo por cada uno
+

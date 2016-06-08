@@ -1,0 +1,45 @@
+\section{Analizador L\'exico}
+
+Para poder generar los Tokens utilizamos la herramienta \textbf{ply}\footnote{http://www.dabeaz.com/ply/}. 
+
+Lo primero que necesitamos fue definir los posibles tokens y sus expresiones regulares.
+
+
+\begin{center}
+\begin{tabular}{ l  l }
+  tokens =  & ( SUPERI, \\
+    &    SUBI,  \\
+    &    DIVIDE, \\
+    &    LPAREN,  \\
+    &    RPAREN, \\
+    &    LBRACE, \\
+    &   RBRACE, \\
+    &    OPERAND ) \\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ l  l }
+  $t\_SUPERI$   &=  \^{} \\
+  $t\_SUBI$   &=    $\_$  \\
+  $t\_DIVIDE$   &=    $/$ \\
+  $t\_LPAREN$    &=    \ (  \\
+  $t\_RPAREN$    &=    \ ) \\
+  $t\_LBRACE$  &=    \{ \\
+  $t\_RBRACE$  &=   \} \\
+  $t\_OPERAND$  &=   [\^{} $\setminus$\^{}\_/\{\}$\setminus$($\setminus$)] \\
+\end{tabular}
+\end{center}
+
+
+\textbf{Notas}: 
+\begin{itemize}
+  \item SUPERI y SUBI hacen referencia a super indice y sub indice respectivamente.
+  \item Utilizamos t$\_$ como prefijo de las expresiones regulares porque es as\'i como \textbf{ply}\footnote{http://www.dabeaz.com/ply/} las interpreta
+  \item La expresi\'on regular t\_OPERAND es negar todos los otros s\'imbolos.
+\end{itemize}
+
+
+
+Una vez definidas estas dos cosas \textbf{ply}\footnote{http://www.dabeaz.com/ply/} las interpreta y nos genera los tokens correspondientes.
+
